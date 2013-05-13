@@ -141,6 +141,17 @@ describe "section 2" do
    also a JSON object, then recursively apply Rule #2 to each
    object.
 =end
+    describe "nested objects" do
+      it "recursively " do
+        document = %q'{"foo":{"bar":"baz"}}'
+
+        merge_patch = %q'{"foo":{"bar":{"baz":"qux"}}}'
+
+        expected = %q'{"foo":{"bar":{"baz":"qux"}}}'
+
+        assert_equal expected, JSON.merge(document, merge_patch)
+      end
+    end
   end
 
   describe "part 6" do
