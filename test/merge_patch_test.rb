@@ -67,6 +67,15 @@ describe "section 2" do
    currently defined within the target resource, the existing
    member is removed.
 =end
+    it "removes members" do
+      document = %q'{"foo":"bar"}'
+
+      merge_patch = %q'{"foo":null}'
+
+      expected = %q'{}'
+
+      assert_equal expected, JSON.merge(document, merge_patch)
+    end
   end
 
   describe "part 3" do

@@ -18,6 +18,7 @@ module JSON
 
     if merge_patch.is_a? Hash
       document.merge!(merge_patch)
+      document.delete_if {|k, v| v.nil? }
       return JSON.dump(document)
     end
   rescue 
