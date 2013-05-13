@@ -109,6 +109,29 @@ describe "section 2" do
    in the provided data whose value is explicitly null is to be
    treated as if the member was undefined.
 =end
+    describe "patch has a primitive" do
+      it "replaces members" do
+        document = %q'{"foo":{"bar":"baz"}}'
+
+        merge_patch = %q'{"foo":2}'
+
+        expected = %q'{"foo":2}'
+
+        assert_equal expected, JSON.merge(document, merge_patch)
+      end
+    end
+
+    describe "patch has an array" do
+      it "replaces members" do
+        document = %q'{"foo":{"bar":"baz"}}'
+
+        merge_patch = %q'{"foo":["bar"]}'
+
+        expected = %q'{"foo":["bar"]}'
+
+        assert_equal expected, JSON.merge(document, merge_patch)
+      end
+    end
   end
 
   describe "part 5" do
