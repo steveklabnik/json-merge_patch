@@ -18,10 +18,19 @@ module JSON
 
     if merge_patch.is_a? Hash
       document.merge!(merge_patch)
-      document.delete_if {|k, v| v.nil? }
+      document.delete_if(&method(:recursive_delete_if))
       return JSON.dump(document)
     end
-  rescue 
+  rescue
     raise MergeError
+  end
+
+  def self.recursive_delete_if(key, value)
+    if value.kind_of?(Hash)
+      value.delete_if(&method(:recursive_delete_if))
+      nil
+    else
+      value.nil?
+    end
   end
 end
