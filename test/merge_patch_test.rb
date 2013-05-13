@@ -29,7 +29,7 @@ end
 
 describe "README example" do
   it "works properly" do
-    document = <<-JSON
+    document = <<-JSON.chomp
 {
   "title": "Goodbye!",
     "author" : {
@@ -41,7 +41,7 @@ describe "README example" do
 }
 JSON
 
-    merge_patch = <<-JSON
+    merge_patch = <<-JSON.chomp
 {
   "title": "Hello!",
     "phoneNumber": "+01-123-456-7890",
@@ -52,7 +52,7 @@ JSON
 }
 JSON
 
-    expected = <<-JSON
+    expected = <<-JSON.chomp
 {
   "title": "Goodbye!",
   "author" : {
