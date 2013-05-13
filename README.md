@@ -1,6 +1,8 @@
 # Json::MergePatch
 
-TODO: Write a gem description
+This gem augments Ruby's built-in JSON library to support merging JSON blobs
+in accordance with the [draft-snell-merge-patch
+draft](http://tools.ietf.org/html/draft-snell-merge-patch-08).
 
 ## Installation
 
@@ -18,7 +20,52 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+First, require the gem:
+
+```
+require 'json/merge_patch'
+```
+
+Then, use it:
+
+```
+# The example from http://tools.ietf.org/html/draft-snell-merge-patch-08#section-2
+
+document = <<-JSON
+{
+  "title": "Goodbye!",
+    "author" : {
+      "givenName" : "John",
+      "familyName" : "Doe"
+    },
+    "tags":["example","sample"],
+    "content": "This will be unchanged"
+}
+JSON
+
+merge_patch = <<-JSON
+{
+  "title": "Hello!",
+    "phoneNumber": "+01-123-456-7890",
+    "author": {
+      "familyName": null
+    },
+    "tags": ["example"]
+}
+JSON
+
+JSON.merge(document, merge_patch)
+# => 
+{
+  "title": "Goodbye!",
+  "author" : {
+    "phoneNumber": "+01-123-456-7890",
+    "givenName" : "John",
+  },
+  "tags":["example"],
+  "content": "This will be unchanged"
+}
+```
 
 ## Contributing
 
