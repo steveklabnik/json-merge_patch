@@ -22,13 +22,13 @@ Or install it yourself as:
 
 First, require the gem:
 
-```
+```ruby
 require 'json/merge_patch'
 ```
 
 Then, use it:
 
-```
+```ruby
 # The example from http://tools.ietf.org/html/draft-snell-merge-patch-08#section-2
 
 document = <<-JSON
