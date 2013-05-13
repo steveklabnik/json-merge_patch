@@ -207,7 +207,7 @@ describe "README example" do
     }
     JSON
 
-    expected = <<-JSON.strip_heredoc.chomp
+    expected = <<-JSON.strip_heredoc.gsub(/\s/, "")
     {
       "title": "Goodbye!",
       "author" : {
