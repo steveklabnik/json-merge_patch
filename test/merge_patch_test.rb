@@ -10,36 +10,29 @@ describe "Section 1" do
     object member contained in the provided data whose value is
     explicitly null is to be treated as if the member was undefined.
 =end
-  it "replaces the root whole if the payload root is an array" do
-    document = <<-JSON.strip_heredoc.chomp
-    ["foo"]
-    JSON
 
-    merge_patch = <<-JSON.strip_heredoc.chomp
-    {"foo":"bar"}
-    JSON
+  describe "if the root of the data provided is an array" do
+    let(:merge_patch) { %q'["foo"]' }
 
-    expected = <<-JSON.strip_heredoc.chomp
-    {"foo":"bar"}
-    JSON
+    it "replaces the root whole" do
+      document = %q'{"foo":"bar"}'
 
-    assert_equal expected, JSON.merge(document, merge_patch)
+      expected = %q'["foo"]'
+
+      assert_equal expected, JSON.merge(document, merge_patch)
+    end
   end
 
-  it "replaces the root whole if the target root is an array" do
-    document = <<-JSON.strip_heredoc.chomp
-    {"foo":"bar"}
-    JSON
+  describe "if the root of the target resource is an array" do
+    let(:document) { %q'["foo"]' }
 
-    merge_patch = <<-JSON.strip_heredoc.chomp
-    ["foo"]
-    JSON
+    it "replaces the root whole" do
+      merge_patch = %q'{"foo":"bar"}'
 
-    expected = <<-JSON.strip_heredoc.chomp
-    ["foo"]
-    JSON
+      expected = %q'{"foo":"bar"}'
 
-    assert_equal expected, JSON.merge(document, merge_patch)
+      assert_equal expected, JSON.merge(document, merge_patch)
+    end
   end
 end
 
@@ -105,20 +98,11 @@ describe "section 2" do
    untouched and unmodified.
 =end
     it "leaves well enough alone!" do
-      document = <<-JSON.strip_heredoc.chomp
-      {
-        "content": "This will be unchanged"
-      }
-      JSON
+      document = %q'{"content": "This will be unchanged"}'
 
-      merge_patch = <<-JSON.strip_heredoc.chomp
-      {
-      }
-      JSON
+      merge_patch = %q'{}'
 
-      expected = <<-JSON.strip_heredoc.chomp
-      {"content":"This will be unchanged"}
-      JSON
+      expected = %q'{"content":"This will be unchanged"}'
 
       assert_equal expected, JSON.merge(document, merge_patch)
     end
