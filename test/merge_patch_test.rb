@@ -25,6 +25,22 @@ describe "Section 1" do
 
     assert_equal expected, JSON.merge(document, merge_patch)
   end
+
+  it "replaces the root whole if the target root is an array" do
+    document = <<-JSON.strip_heredoc.chomp
+    {"foo":"bar"}
+    JSON
+
+    merge_patch = <<-JSON.strip_heredoc.chomp
+    ["foo"]
+    JSON
+
+    expected = <<-JSON.strip_heredoc.chomp
+    ["foo"]
+    JSON
+
+    assert_equal expected, JSON.merge(document, merge_patch)
+  end
 end
 
 describe "README example" do
