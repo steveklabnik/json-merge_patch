@@ -50,6 +50,15 @@ describe "section 2" do
    contained in the provided data whose value is explicitly null
    is to be treated as if the member were undefined.
 =end
+    it "adds members" do
+      document = %q'{"foo":"bar"}'
+
+      merge_patch = %q'{"foo":"bar","baz":"quxx"}'
+
+      expected = %q'{"foo":"bar","baz":"quxx"}'
+
+      assert_equal expected, JSON.merge(document, merge_patch)
+    end
   end
 
   describe "part 2" do
