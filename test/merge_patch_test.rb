@@ -87,6 +87,17 @@ describe "section 2" do
    provided data whose value is explicitly null is to be treated
    as if the member were undefined.
 =end
+    describe "object" do
+      it "replaces members" do
+        document = %q'{"foo":"bar"}'
+
+        merge_patch = %q'{"foo":"baz"}'
+
+        expected = %q'{"foo":"baz"}'
+
+        assert_equal expected, JSON.merge(document, merge_patch)
+      end
+    end
   end
 
   describe "part 4" do
