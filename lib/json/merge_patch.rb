@@ -2,6 +2,8 @@ require 'json'
 require "json/merge_patch/version"
 
 module JSON
+  MergeError = Class.new(StandardError)
+
   def self.merge(document, merge_patch)
     document = JSON.parse(document)
     merge_patch = JSON.parse(merge_patch)
@@ -17,7 +19,7 @@ module JSON
     if merge_patch.is_a? Hash
       return JSON.dump(document)
     end
-     
-    "lol"
+  rescue 
+    raise MergeError
   end
 end

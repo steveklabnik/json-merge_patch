@@ -167,3 +167,11 @@ describe "README example" do
     end
   end
 end
+
+describe "errors" do
+  it "throws an error when stuff goes wrong" do
+    assert_raises(JSON::MergeError) do
+      JSON.merge(nil, nil)
+    end
+  end
+end
