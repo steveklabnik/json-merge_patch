@@ -13,6 +13,10 @@ module JSON
     if document.is_a? Array
       return JSON.dump(merge_patch)
     end
+
+    if merge_patch.is_a? Hash
+      return JSON.dump(document)
+    end
      
     "lol"
   end
