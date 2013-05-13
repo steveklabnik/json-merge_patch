@@ -59,9 +59,9 @@ JSON
 JSON.merge(document, merge_patch)
 # => 
 {
-  "title": "Goodbye!",
+  "title": "Hello!",
+  "phoneNumber": "+01-123-456-7890",
   "author" : {
-    "phoneNumber": "+01-123-456-7890",
     "givenName" : "John",
   },
   "tags":["example"],
