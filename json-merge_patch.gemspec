@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Json::MergePatch::VERSION
   spec.authors       = ["Steve Klabnik"]
   spec.email         = ["steve@steveklabnik.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{An implementation of the json-merge-patch draft.}
+  spec.summary       = %q{An implementation of the json-merge-patch draft.}
+  spec.homepage      = "https://github.com/steveklabnik/json-merge_patch"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
