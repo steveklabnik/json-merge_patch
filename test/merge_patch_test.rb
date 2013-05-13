@@ -152,6 +152,16 @@ describe "section 2" do
         assert_equal expected, JSON.merge(document, merge_patch)
       end
     end
+
+    it "recursive removal" do
+      document = %q'{"foo":{"bar":"baz"}}'
+
+      merge_patch = %q'{"foo":{"bar":null}}'
+
+      expected = %q'{"foo":{}}'
+
+      assert_equal expected, JSON.merge(document, merge_patch)
+    end
   end
 
   describe "part 6" do
