@@ -207,19 +207,9 @@ describe "README example" do
     }
     JSON
 
-    expected = <<-JSON.strip_heredoc.gsub(/\s/, "")
-    {
-      "title": "Goodbye!",
-      "author" : {
-      "phoneNumber": "+01-123-456-7890",
-      "givenName" : "John",
-      },
-      "tags":["example"],
-      "content": "This will be unchanged"
-    }
-    JSON
+    expected = %q'{"title":"Hello!","author":{"givenName":"John"},"tags":["example"],"content":"This will be unchanged"},"phoneNumber":"+01-123-456-7890"'
 
-    pending do 
+    pending do
       assert_equal expected, JSON.merge(document, merge_patch)
     end
   end
