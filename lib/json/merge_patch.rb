@@ -2,8 +2,14 @@ require 'json'
 require "json/merge_patch/version"
 
 module JSON
+  # This represents an error that occurs during merging.
   MergeError = Class.new(StandardError)
 
+  # Merges a patch into the existing JSON document.
+  #
+  # @param document [String] the original JSON document.
+  # @param merge_patch [Symbol] the merge-patch JSON document.
+  # @return [String] the final document after applying the patch
   def self.merge(document, merge_patch)
     orig = JSON.parse(document)
     patch = JSON.parse(merge_patch)
@@ -12,12 +18,21 @@ module JSON
     raise MergeError
   end
 
+  # This class represents a merge patch.
   class MergePatch
+
+    # Sets up a MergePatch.
+    #
+    # @param orig [Object] the original document
+    # @param patch [Object] the patch document
     def initialize(orig, patch)
       @orig = orig
       @patch = patch
     end
 
+    # Applies the patch the original object.
+    #
+    # @return [Object] the document after applying the patch.
     def call
       if @patch.nil?
         return @orig
@@ -58,6 +73,8 @@ module JSON
       end
       @orig
     end
+
+    private
 
     def is_primitive?(val)
       case val
