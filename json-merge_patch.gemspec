@@ -5,7 +5,7 @@ require 'json/merge_patch/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "json-merge_patch"
-  spec.version       = Json::MergePatch::VERSION
+  spec.version       = JSON::MergePatch::VERSION
   spec.authors       = ["Steve Klabnik"]
   spec.email         = ["steve@steveklabnik.com"]
   spec.description   = %q{An implementation of the json-merge-patch draft.}
