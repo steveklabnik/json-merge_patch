@@ -69,6 +69,14 @@ JSON.merge(document, merge_patch)
 }
 ```
 
+If you'd prefer to operate on pure Ruby objects rather than JSON strings, you
+can construct a `MergePatch` object instead.
+
+```
+JSON::MergePatch.new({}, {"foo" => "bar"}).call
+=> {"foo"=>"bar"}
+```
+
 ## Contributing
 
 1. Fork it
