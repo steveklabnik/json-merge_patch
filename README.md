@@ -1,6 +1,6 @@
 # Json::MergePatch
 
-[![Build Status](https://travis-ci.org/steveklabnik/json-merge_patch.png)](https://travis-ci.org/steveklabnik/json-merge_patch)
+[![Build Status](https://travis-ci.org/steveklabnik/json-merge_patch.png)](https://travis-ci.org/steveklabnik/json-merge_patch) [![Code Climate](https://codeclimate.com/github/steveklabnik/json-merge_patch.png)](https://codeclimate.com/github/steveklabnik/json-merge_patch)
 
 This gem augments Ruby's built-in JSON library to support merging JSON blobs
 in accordance with the [draft-snell-merge-patch
