@@ -77,6 +77,9 @@ JSON::MergePatch.new({}, {"foo" => "bar"}).call
 => {"foo"=>"bar"}
 ```
 
+Also check out [http://json-merge-patch.herokuapp.com/](http://json-merge-patch.herokuapp.com/),
+which is a Rails app that serves up `json-merge-patch` responses.
+
 ## Contributing
 
 1. Fork it
