@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["steve@steveklabnik.com"]
   spec.description   = %q{An implementation of the json-merge-patch draft.}
   spec.summary       = %q{An implementation of the json-merge-patch draft.}
-  spec.homepage      = "https://github.com/steveklabnik/json-merge_patch"
+  spec.homepage      = "http://json-merge-patch.herokuapp.com/"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
