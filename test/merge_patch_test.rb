@@ -27,7 +27,7 @@ describe "Section 1" do
     let(:document) { %q'["foo"]' }
 
     it "replaces the root whole" do
-      merge_patch = %q'{"foo":"bar"}'
+      merge_patch = %q'{"foo":"bar","bar":null}'
 
       expected = %q'{"foo":"bar"}'
 
@@ -145,7 +145,7 @@ describe "section 2" do
       it "recursively " do
         document = %q'{"foo":{"bar":"baz"}}'
 
-        merge_patch = %q'{"foo":{"bar":{"baz":"qux"}}}'
+        merge_patch = %q'{"foo":{"bar":{"baz":"qux","dev":null}}}'
 
         expected = %q'{"foo":{"bar":{"baz":"qux"}}}'
 
