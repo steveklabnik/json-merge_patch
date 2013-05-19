@@ -182,6 +182,15 @@ describe "section 2" do
   end
 end
 
+describe "missing coverage" do
+  it "deals with a nil patch" do
+    document = %q'{"foo":"bar"}'
+    expected = %q'{"foo":"bar"}'
+
+    assert_equal expected, JSON::MergePatch.new(document, nil).call
+  end
+end
+
 describe "README example" do
   it "works properly" do
     document = <<-JSON.strip_heredoc.chomp
