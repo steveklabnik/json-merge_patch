@@ -43,30 +43,46 @@ module JSON
       elsif is_primitive?(@patch) || is_primitive?(@orig)
         @orig = @patch
       elsif @patch.kind_of?(Hash)
-        @patch.each_key do |m|
-          if @orig.has_key?(m)
-            if @patch[m].nil?
-              @orig.delete(m)
-            else
-              if is_primitive?(@patch[m])
-                @orig[m] = @patch[m]
-              else
-                if @orig[m].kind_of?(Array)
-                  @orig[m] = purge_nils(@patch[m])
-                else
-                  @orig[m] = self.class.new(@orig[m], @patch[m]).call
-                end
-              end
-            end
-          elsif !(@patch[m].nil?)
-            @orig[m] = purge_nils(@patch[m])
-          end
+        @patch.each_key do |property|
+          process_patch_property(property)
         end
       end
       @orig
     end
 
     private
+
+    def process_patch_property(property)
+      if @orig.has_key?(property)
+        evaluate_patch_property(property)
+      elsif !(@patch[property].nil?)
+        @orig[property] = purge_nils(@patch[property])
+      end
+    end
+
+    def evaluate_patch_property(property)
+      if @patch[property].nil?
+        remove_property(property)
+      else
+        @orig[property] = update_property(property)
+      end
+    end
+
+    def remove_property(property)
+      @orig.delete(property)
+    end
+
+    def update_property(property)
+      if is_primitive?(@patch[property])
+        @patch[property]
+      else
+        if @orig[property].kind_of?(Array)
+          purge_nils(@patch[property])
+        else
+          self.class.new(@orig[property], @patch[property]).call
+        end
+      end
+    end
 
     def is_primitive?(val)
       [String,    Fixnum,
