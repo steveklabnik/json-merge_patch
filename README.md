@@ -75,9 +75,9 @@ JSON.merge(document, merge_patch)
 If you'd prefer to operate on pure Ruby objects rather than JSON strings, you
 can construct a `MergePatch` object instead.
 
-```
+```ruby
 JSON::MergePatch.new({}, {"foo" => "bar"}).call
-=> {"foo"=>"bar"}
+# => {"foo"=>"bar"}
 ```
 
 Also check out [http://json-merge-patch.herokuapp.com/](http://json-merge-patch.herokuapp.com/),
@@ -88,7 +88,7 @@ which is a Rails app that serves up `json-merge-patch` responses.
 JSON::MergePatch provides a Railtie that registers the proper MIME type with
 Rails. To use it, do something like this:
 
-```
+```ruby
 def update
   safe_params = params.require(:merge).permit(:original, :patch)
 
