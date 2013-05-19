@@ -1,4 +1,4 @@
-# Json::MergePatch
+# JSON::MergePatch
 
 [![Build Status](https://travis-ci.org/steveklabnik/json-merge_patch.png)](https://travis-ci.org/steveklabnik/json-merge_patch) [![Code Climate](https://codeclimate.com/github/steveklabnik/json-merge_patch.png)](https://codeclimate.com/github/steveklabnik/json-merge_patch) [![Coverage Status](https://coveralls.io/repos/steveklabnik/json-merge_patch/badge.png)](https://coveralls.io/r/steveklabnik/json-merge_patch)
 
