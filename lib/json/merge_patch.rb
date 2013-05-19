@@ -98,11 +98,7 @@ module JSON
 
       obj.each do |m|
         if obj[m].nil?
-          if obj.kind_of?(Array)
-            obj.delete_at(m)
-          else
-            obj.delete(m)
-          end
+          obj.delete(m)
         elsif obj[m].kind_of?(Hash)
           purge_nils(obj[m])
         end
