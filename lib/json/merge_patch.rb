@@ -44,8 +44,6 @@ module JSON
     private
 
     def merge(orig, patch)
-      return nil if patch.nil?
-
       if is_array_or_primitive?(orig) || is_array_or_primitive?(patch)
         orig = patch
       elsif patch.kind_of?(Hash)
@@ -60,8 +58,10 @@ module JSON
     end
 
     def is_primitive?(val)
-      [String,    Fixnum,
-       TrueClass, FalseClass].include?(val.class)
+      [ String, Fixnum,
+        TrueClass, FalseClass,
+        NilClass
+      ].include?(val.class)
     end
 
     def purge_nils(obj)
