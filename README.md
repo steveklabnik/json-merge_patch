@@ -6,6 +6,9 @@ This gem augments Ruby's built-in JSON library to support merging JSON blobs
 in accordance with the [draft-snell-merge-patch
 draft](http://tools.ietf.org/html/draft-snell-merge-patch-08).
 
+As far as I know, it is a complete implementation of the draft. If you find
+something that's not compliant, please let me know.
+
 ## Installation
 
 Add this line to your application's Gemfile:
