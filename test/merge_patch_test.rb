@@ -197,6 +197,14 @@ describe "missing coverage" do
 
     assert_equal expected, JSON.merge(document, patch)
   end
+
+  it "handles primitive false" do
+    document = %q'{"foo":"bar"}'
+    patch = %q'{"foo":false}'
+    expected = %q'{"foo":false}'
+
+    assert_equal expected, JSON.merge(document, patch)
+  end
 end
 
 describe "README example" do
