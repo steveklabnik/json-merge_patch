@@ -46,7 +46,7 @@ module JSON
     def merge(orig, patch)
       if is_array_or_primitive?(orig) || is_array_or_primitive?(patch)
         orig = patch
-      elsif patch.kind_of?(Hash)
+      else
         patch.each_key { |key| orig[key] = merge(orig[key], patch[key]) }
       end
 
