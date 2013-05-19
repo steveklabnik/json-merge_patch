@@ -90,9 +90,8 @@ module JSON
     end
 
     def purge_nils(obj)
-      return nil if obj.nil?
-      return obj.compact if obj.kind_of?(Array)
       return obj if is_primitive?(obj)
+      return obj.compact if obj.kind_of?(Array)
 
       obj.delete_if {|k, v| v.nil? }
     end
