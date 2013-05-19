@@ -50,24 +50,14 @@ module JSON
                 @orig[m] = @patch[m]
               else
                 if @orig[m].kind_of?(Array)
-                  result = purge_nils(@patch[m])
-                  if result.nil?
-                    @orig.delete(m)
-                  else
-                    @orig[m] = result
-                  end
+                  @orig[m] = purge_nils(@patch[m])
                 else
                   @orig[m] = self.class.new(@orig[m], @patch[m]).call
                 end
               end
             end
           elsif !(@patch[m].nil?)
-            result = purge_nils(@patch[m])
-            if result.nil?
-              @orig.delete(m)
-            else
-              @orig[m] = result
-            end
+            @orig[m] = purge_nils(@patch[m])
           end
         end
       end
