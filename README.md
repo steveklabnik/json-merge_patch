@@ -83,6 +83,28 @@ JSON::MergePatch.new({}, {"foo" => "bar"}).call
 Also check out [http://json-merge-patch.herokuapp.com/](http://json-merge-patch.herokuapp.com/),
 which is a Rails app that serves up `json-merge-patch` responses.
 
+### Use in Rails
+
+JSON::MergePatch provides a Railtie that registers the proper MIME type with
+Rails. To use it, do something like this:
+
+```
+def update
+  safe_params = params.require(:merge).permit(:original, :patch)
+
+  @result = JSON::MergePatch.new(
+    safe_params[:original],
+    safe_params[:patch]
+  ).call
+
+  respond_to do |format|
+    format.json_merge_patch do
+      render :json => @result
+    end
+  end
+end
+```
+
 ## Contributing
 
 1. Fork it

@@ -1,6 +1,8 @@
 require 'json'
 require "json/merge_patch/version"
 
+require 'json/merge_patch/railtie' if defined?(Rails)
+
 module JSON
   # This represents an error that occurs during merging.
   MergeError = Class.new(StandardError)
