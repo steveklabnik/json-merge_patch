@@ -76,12 +76,7 @@ module JSON
       return obj.compact if obj.kind_of?(Array)
       return obj if is_primitive?(obj)
 
-      obj.each do |m|
-        if obj[m].nil?
-          obj.delete(m)
-        end
-      end
-      obj
+      obj.delete_if {|k, v| v.nil? }
     end
   end
 end
