@@ -189,6 +189,14 @@ describe "missing coverage" do
 
     assert_equal expected, JSON::MergePatch.new(document, nil).call
   end
+
+  it "handles primitive true" do
+    document = %q'{"foo":"bar"}'
+    patch = %q'{"foo":true}'
+    expected = %q'{"foo":true}'
+
+    assert_equal expected, JSON.merge(document, patch)
+  end
 end
 
 describe "README example" do
