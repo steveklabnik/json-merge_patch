@@ -67,18 +67,8 @@ module JSON
     private
 
     def is_primitive?(val)
-      case val
-      when String
-        true
-      when Fixnum
-        true
-      when TrueClass
-        true
-      when FalseClass
-        true
-      else
-        false
-      end
+      [String,    Fixnum,
+       TrueClass, FalseClass].include?(val.class)
     end
 
     def purge_nils(obj)
