@@ -44,29 +44,21 @@ module JSON
         @orig = @patch
       elsif @patch.kind_of?(Hash)
         @patch.each_key do |m|
-          if @orig.has_key?(m)
-            if @patch[m].nil?
-              @orig.delete(m)
-            else
-              if is_primitive?(@patch[m])
-                @orig[m] = @patch[m]
-              else
-                if @orig[m].kind_of?(Array)
-                  @orig[m] = purge_nils(@patch[m])
-                else
-                  @orig[m] = self.class.new(@orig[m], @patch[m]).call
-                end
-              end
-            end
-          elsif !(@patch[m].nil?)
-            @orig[m] = purge_nils(@patch[m])
-          end
+          patch_key(m)
         end
       end
       @orig
     end
 
     private
+
+    def patch_key(m)
+      if @patch[m].nil? && @orig.has_key?(m)
+        @orig.delete(m) 
+      else
+        @orig[m] = self.class.new(@orig[m], @patch[m]).call
+      end
+    end
 
     def is_primitive?(val)
       [String,    Fixnum,
