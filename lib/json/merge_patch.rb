@@ -60,7 +60,7 @@ module JSON
     def is_primitive?(val)
       [ String, Fixnum,
         TrueClass, FalseClass,
-        NilClass
+        NilClass, Float
       ].include?(val.class)
     end
 
