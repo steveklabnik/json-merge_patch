@@ -91,9 +91,9 @@ describe "section 2" do
       it "replaces members" do
         document = %q'{"foo":"bar"}'
 
-        merge_patch = %q'{"foo":"baz"}'
+        merge_patch = %q'{"foo":"baz","dev":[null,"bar"]}'
 
-        expected = %q'{"foo":"baz"}'
+        expected = %q'{"foo":"baz","dev":[null,"bar"]}'
 
         assert_equal expected, JSON.merge(document, merge_patch)
       end

@@ -44,31 +44,18 @@ module JSON
     private
 
     def merge(orig, patch)
-      if is_array_or_primitive?(orig) || is_array_or_primitive?(patch)
-        orig = patch
-      else
+      if orig.kind_of?(Hash) && patch.kind_of?(Hash)
         patch.each_key { |key| orig[key] = merge(orig[key], patch[key]) }
+      else
+        orig = patch
       end
 
       purge_nils orig
     end
 
-    def is_array_or_primitive?(obj)
-      obj.kind_of?(Array) || is_primitive?(obj)
-    end
-
-    def is_primitive?(val)
-      [ String, Fixnum,
-        TrueClass, FalseClass,
-        NilClass
-      ].include?(val.class)
-    end
-
     def purge_nils(obj)
-      return obj if is_primitive?(obj)
-      return obj.compact if obj.kind_of?(Array)
-
-      obj.delete_if {|k, v| v.nil? }
+      obj.delete_if {|k, v| v.nil? } if obj.kind_of?(Hash)
+      obj
     end
   end
 end
