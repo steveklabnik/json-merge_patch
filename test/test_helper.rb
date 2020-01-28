@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'simplecov'
 SimpleCov.start do
   add_filter do |source_file|
@@ -11,12 +13,10 @@ Coveralls.wear!
 require 'minitest/autorun'
 
 def pending
-  begin
-    yield
-    fail "OMG pending test passed."
-  rescue MiniTest::Assertion
-    skip "Still pending"
-  end
+  yield
+  raise 'OMG pending test passed.'
+rescue MiniTest::Assertion
+  skip 'Still pending'
 end
 
 class String

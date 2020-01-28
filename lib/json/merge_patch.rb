@@ -58,7 +58,7 @@ module JSON
     end
 
     def is_primitive?(val)
-      [ String, Fixnum,
+      [ String, Integer, Float,
         TrueClass, FalseClass,
         NilClass
       ].include?(val.class)
